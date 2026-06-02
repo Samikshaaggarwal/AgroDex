@@ -79,7 +79,7 @@ function HelpPanel({ network, onRetry }: { network: string; onRetry: () => void 
               className="text-blue-700 underline hover:text-blue-900 inline-flex items-center gap-1"
               target="_blank"
               rel="noreferrer"
-              href="https://chromewebstore.google.com/detail/hashpack/heoegjdnijfacjfoebdnlobjekoebcag"
+              href="https://chromewebstore.google.com/detail/hashpack/gjagmgiddbbciopjhllkdnddhcglnemk"
             >
               Chrome Web Store <ExternalLink className="h-3 w-3" />
             </a>
@@ -125,7 +125,7 @@ function HelpPanel({ network, onRetry }: { network: string; onRetry: () => void 
           <a
             target="_blank"
             rel="noreferrer"
-            href="https://chromewebstore.google.com/detail/hashpack/heoegjdnijfacjfoebdnlobjekoebcag"
+            href="https://chromewebstore.google.com/detail/hashpack/gjagmgiddbbciopjhllkdnddhcglnemk"
           >
             <ExternalLink className="h-3 w-3 mr-1" />
             Install HashPack
@@ -323,7 +323,7 @@ export default function WalletButton() {
         <p className="text-xs text-gray-500 text-center">
           💡 Make sure{" "}
           <a
-            href="https://chromewebstore.google.com/detail/hashpack/heoegjdnijfacjfoebdnlobjekoebcag"
+            href="https://chromewebstore.google.com/detail/hashpack/gjagmgiddbbciopjhllkdnddhcglnemk"
             target="_blank"
             rel="noreferrer"
             className="text-blue-600 hover:underline"
