@@ -11,6 +11,7 @@ import { DEMO_VERIFY_URL } from '@/lib/demo';
 import { lazy, Suspense } from 'react';
 
 const Index             = lazy(() => import('./pages/Index'));
+const About             = lazy(() => import('./pages/About'));
 const Login             = lazy(() => import('./pages/Login'));
 const AuthLanding       = lazy(() => import('./pages/AuthLanding'));
 const Profile           = lazy(() => import('./pages/Profile'));
@@ -44,6 +45,7 @@ const App = () => (
                   <Routes>
                     <Route path="/login" element={<Login />} />
                     <Route path="/welcome" element={<AuthLanding />} />
+                    <Route path="/about" element={<About />} />
                     <Route path="/" element={<ProtectedRoute><Index /></ProtectedRoute>} />
                     <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
                     <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />

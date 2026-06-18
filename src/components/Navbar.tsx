@@ -20,6 +20,7 @@ import {
   Menu,
   BarChart3,
   Wallet,
+  Info,
 } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useWallet } from "@/hooks/useWallet";
@@ -52,6 +53,7 @@ export default function Navbar() {
     { to: "/register", label: t('nav.register'), icon: FileText },
     { to: "/tokenize", label: t('nav.tokenize'), icon: Coins },
     { to: "/verify", label: t('nav.verify'), icon: ShieldCheck },
+    { to: "/about", label: t('nav.about', { defaultValue: 'About' }), icon: Info },
   ];
 
   const isActive = (path: string) => location.pathname === path;
@@ -134,7 +136,7 @@ export default function Navbar() {
             <ThemeToggle />
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon">
+                <Button variant="ghost" size="icon" aria-label="Open settings menu">
                   <Settings className="h-5 w-5 text-gray-600 dark:text-slate-400" />
                 </Button>
               </DropdownMenuTrigger>
@@ -168,7 +170,7 @@ export default function Navbar() {
             <ThemeToggle />
             <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon">
+                <Button variant="ghost" size="icon" aria-label="Open navigation menu">
                   <Menu className="h-6 w-6 text-gray-700 dark:text-slate-300" />
                 </Button>
               </SheetTrigger>

@@ -4,6 +4,7 @@ const en = {
     register: "Register",
     tokenize: "Tokenize",
     verify: "Verify",
+    about: "About",
     profile: "Profile",
     settings: "Settings",
     logout: "Logout",
