@@ -620,6 +620,39 @@ export default function BatchRegistration() {
                 </p>
               </div>
 
+              {/* Submitted Metadata Review */}
+              <div className="p-4 rounded-xl border border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/20 space-y-3">
+                <h4 className="text-sm font-bold text-gray-800 dark:text-slate-200">Batch Details Review</h4>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-xs">
+                  <div className="space-y-1">
+                    <span className="text-slate-500 font-medium">Product Name</span>
+                    <p className="font-semibold text-gray-800 dark:text-slate-200 truncate">{productName}</p>
+                  </div>
+                  <div className="space-y-1">
+                    <span className="text-slate-500 font-medium">Harvest Batch</span>
+                    <p className="font-semibold text-gray-800 dark:text-slate-200 truncate">{harvestBatch}</p>
+                  </div>
+                  <div className="space-y-1">
+                    <span className="text-slate-500 font-medium">Quantity</span>
+                    <p className="font-semibold text-gray-800 dark:text-slate-200 truncate">{quantity} {unit}</p>
+                  </div>
+                  <div className="space-y-1">
+                    <span className="text-slate-500 font-medium">Location</span>
+                    <p className="font-semibold text-gray-800 dark:text-slate-200 truncate">{origin}</p>
+                  </div>
+                  <div className="space-y-1">
+                    <span className="text-slate-500 font-medium">Harvest Date</span>
+                    <p className="font-semibold text-gray-800 dark:text-slate-200 truncate">{harvestDate}</p>
+                  </div>
+                  {metadata && (
+                    <div className="space-y-1 col-span-2 md:col-span-1">
+                      <span className="text-slate-500 font-medium">Additional Metadata</span>
+                      <p className="font-semibold text-gray-800 dark:text-slate-200 truncate">{metadata}</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {/* Cooperative Readiness */}
                 <div className="p-4 rounded-xl border border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/20 space-y-3">

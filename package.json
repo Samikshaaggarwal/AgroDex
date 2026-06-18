@@ -9,7 +9,8 @@
     "build": "vite build",
     "lint": "eslint src",
     "postcss:check": "postcss src/**/*.css --no-map --dry-run > /dev/null",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "vitest run"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",

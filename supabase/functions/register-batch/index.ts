@@ -399,7 +399,7 @@ Deno.serve(async (req) => {
         SUPABASE_URL: !!Deno.env.get('SUPABASE_URL'),
         SUPABASE_SERVICE_ROLE_KEY: !!Deno.env.get('SUPABASE_SERVICE_ROLE_KEY'),
         GEMINI_API_KEY: !!Deno.env.get('GEMINI_API_KEY'),
-        GEMINI_MODEL: Deno.env.get('GEMINI_MODEL') || 'gemini-2.0-flash-lite'
+        GEMINI_MODEL: Deno.env.get('GEMINI_MODEL') || 'gemini-3.1-flash-lite'
       }
       console.log(`[${requestId}] Debug mode - env check:`, envInfo)
       return new Response(
