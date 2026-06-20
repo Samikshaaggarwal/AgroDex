@@ -32,6 +32,7 @@ import { useToast } from "@/hooks/use-toast";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Helmet } from "react-helmet-async";
+import { CopyButton } from "@/components/CopyButton";
 
 export default function BatchRegistration() {
   const [productName, setProductName] = useState("");
@@ -39,7 +40,6 @@ export default function BatchRegistration() {
   const [unit, setUnit] = useState("");
   const [origin, setOrigin] = useState("");
   const [harvestDate, setHarvestDate] = useState("");
-  const [isCopied, setIsCopied] = useState(false);
   const { toast } = useToast();
   const navigate = useNavigate();
 
@@ -273,27 +273,25 @@ export default function BatchRegistration() {
                               mutation.data.hcsTransactionId.length - 5,
                             )}
                           </a>
-                          <button
-                            onClick={() => {
-                              navigator.clipboard.writeText(
-                                mutation.data.hcsTransactionId,
-                              );
-                              setIsCopied(true);
-                              setTimeout(() => setIsCopied(false), 2000);
-                            }}
-                            className="px-2 py-1 text-xs font-medium text-gray-700 dark:text-slate-300 bg-gray-200 dark:bg-slate-850 rounded hover:bg-gray-300 dark:hover:bg-slate-800 transition-colors"
-                          >
-                            {isCopied ? "Copied!" : "Copy"}
-                          </button>
+                          <CopyButton
+                            value={mutation.data.hcsTransactionId}
+                            successMessage="Transaction ID copied!"
+                          />
                         </div>
                       </div>
-                      <div className="flex items-start gap-2">
-                        <span className="text-sm font-semibold text-gray-700 dark:text-slate-400 min-w-[140px]">
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm font-semibold text-gray-700 dark:text-slate-400">
                           Batch ID:
                         </span>
-                        <span className="text-sm text-gray-900 dark:text-slate-200 font-mono">
-                          {mutation.data.batchId}
-                        </span>
+                        <div className="flex items-center space-x-2">
+                          <span className="text-sm text-gray-900 dark:text-slate-200 font-mono">
+                            {mutation.data.batchId}
+                          </span>
+                          <CopyButton
+                            value={mutation.data.batchId}
+                            successMessage="Batch ID copied!"
+                          />
+                        </div>
                       </div>
                     </div>
 
@@ -336,20 +334,15 @@ export default function BatchRegistration() {
                           <Download className="h-3.5 w-3.5 mr-1" />
                           Download
                         </Button>
-                        <Button
-                          type="button"
-                          size="sm"
+                        <CopyButton
+                          value={`${window.location.origin}/verify/${mutation.data.batchId}`}
+                          successMessage="Verification URL copied!"
                           variant="outline"
-                          onClick={() => {
-                            const verifyUrl = `${window.location.origin}/verify/${mutation.data.batchId}`;
-                            navigator.clipboard.writeText(verifyUrl);
-                            toast({ title: "Verification URL copied!" });
-                          }}
+                          size="sm"
                           className="flex-1 text-xs border-emerald-250 dark:border-slate-800 text-gray-700 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-slate-800 font-semibold"
                         >
-                          <Copy className="h-3.5 w-3.5 mr-1" />
                           Copy Link
-                        </Button>
+                        </CopyButton>
                       </div>
                     </div>
 
