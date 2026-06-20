@@ -26,7 +26,6 @@ import {
   Calendar,
   Hash,
   Download,
-  Copy,
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import Navbar from "@/components/Navbar";

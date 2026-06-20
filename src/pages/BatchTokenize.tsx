@@ -22,7 +22,6 @@ import {
   AlertCircle,
   Sparkles,
   Award,
-  Copy,
   ExternalLink,
   FileText,
   Link2,
@@ -242,7 +241,6 @@ export default function BatchTokenize() {
                   size="sm"
                   className="flex-1 border-gray-300 dark:border-slate-800 text-gray-700 dark:text-slate-355 hover:bg-gray-100 dark:hover:bg-slate-800 font-semibold"
                 >
-                  <Copy className="h-4 w-4 mr-2" />
                   Copy Link
                 </CopyButton>
               </div>
