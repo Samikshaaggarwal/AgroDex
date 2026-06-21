@@ -8,7 +8,8 @@ import { ThemeProvider } from '@/contexts/ThemeContext';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import { HelmetProvider } from 'react-helmet-async';
 import { DEMO_VERIFY_URL } from '@/lib/demo';
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const Index             = lazy(() => import('./pages/Index'));
 const About             = lazy(() => import('./pages/About'));

@@ -46,13 +46,13 @@ export function LanguageSelector() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="sm" className="gap-1.5 notranslate">
+        <Button variant="ghost" size="sm" className="gap-1.5">
           <span>{current.flag}</span>
           <span className="hidden sm:block text-xs">{current.label}</span>
           <ChevronDown className="h-3 w-3" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="max-h-72 overflow-y-auto notranslate">
+      <DropdownMenuContent align="end" className="max-h-72 overflow-y-auto">
         {LANGUAGES.map(lang => (
           <DropdownMenuItem
             key={lang.code}
