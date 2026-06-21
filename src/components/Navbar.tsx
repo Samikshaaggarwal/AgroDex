@@ -35,7 +35,8 @@ export default function Navbar() {
   const { accountId, isConnected, network, disconnect } = useWallet();
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { isSuccess, isError } = useServiceStatus();
+  const isPublicJourney = location.pathname.startsWith("/journey");
+  const { isSuccess, isError } = useServiceStatus(!isPublicJourney);
 
   // Déterminer la couleur et le texte du tooltip
   let statusColor = "bg-gray-400";
@@ -56,7 +57,9 @@ export default function Navbar() {
     { to: "/about", label: t('nav.about'), icon: Info },
   ];
 
-  const isActive = (path: string) => location.pathname === path;
+  const isActive = (path: string) =>
+    location.pathname === path ||
+    (path.startsWith("/journey") && location.pathname.startsWith("/journey"));
 
   const accountLabel = user ? "Account" : isConnected ? "Wallet" : "User";
 
@@ -89,7 +92,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-1">
+          <nav className="hidden lg:flex items-center gap-1">
             {navLinks.map(({ to, label, icon: Icon }) => (
               <Link key={to} to={to}>
                 <Button
@@ -108,7 +111,7 @@ export default function Navbar() {
           </nav>
 
           {/* Desktop User Menu */}
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-3">
             {/* Wallet indicator (shown when connected via wallet) */}
             {isConnected && accountId && (
               <div className="flex items-center gap-1.5 bg-blue-50 dark:bg-blue-950/30 px-3 py-1.5 rounded-lg border border-blue-200 dark:border-blue-800">
@@ -158,7 +161,7 @@ export default function Navbar() {
           </div>
 
           {/* Mobile Menu */}
-          <div className="flex items-center gap-2 md:hidden">
+          <div className="flex items-center gap-2 lg:hidden">
             <ThemeToggle />
             <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
               <SheetTrigger asChild>
