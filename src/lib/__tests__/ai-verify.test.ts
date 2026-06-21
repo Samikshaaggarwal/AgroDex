@@ -46,6 +46,9 @@ describe("AI Registration Verification System Tests", () => {
       fetchSpy.mockResolvedValue({
         ok: true,
         status: 200,
+        headers: {
+          get: (name: string) => name === "content-type" ? "application/json" : null
+        },
         json: vi.fn().mockResolvedValue(mockResult),
       } as unknown as Response);
 
@@ -72,23 +75,28 @@ describe("AI Registration Verification System Tests", () => {
       expect(result).toEqual(mockResult);
     });
 
-    it("should throw error if server returns non-ok status", async () => {
+    it("should return local fallback verification if server returns non-ok status", async () => {
       fetchSpy.mockResolvedValue({
         ok: false,
         status: 500,
+        headers: {
+          get: (name: string) => name === "content-type" ? "application/json" : null
+        },
         json: vi.fn().mockResolvedValue({ error: "Gemini Service Unavailable" }),
       } as unknown as Response);
 
-      await expect(
-        clientVerifyRegistration({
-          productName: "Rice",
-          harvestBatch: "HB150",
-          quantity: "500",
-          unit: "kg",
-          location: "Maharashtra",
-          harvestDate: "2026-06-20",
-        })
-      ).rejects.toThrow(/Verification failed/);
+      const result = await clientVerifyRegistration({
+        productName: "Rice",
+        harvestBatch: "HB150",
+        quantity: "500",
+        unit: "kg",
+        location: "Maharashtra",
+        harvestDate: "2026-06-20",
+      });
+
+      expect(result.ok).toBe(true);
+      expect(result.data.fallback).toBe(true);
+      expect(result.data.warningMessage).toContain("AI verification unavailable");
     });
   });
 

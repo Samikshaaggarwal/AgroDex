@@ -296,7 +296,7 @@ async function analyzeBatch(
   const startTime = Date.now()
   const genAI = new GoogleGenerativeAI(apiKey)
   const model = genAI.getGenerativeModel({
-    model: Deno.env.get('GEMINI_MODEL') || 'gemini-3.1-flash-lite',
+    model: 'gemini-3.1-flash-lite',
     generationConfig: {
       temperature: 0.2,
       topP: 0.8,
@@ -399,7 +399,7 @@ Deno.serve(async (req) => {
         SUPABASE_URL: !!Deno.env.get('SUPABASE_URL'),
         SUPABASE_SERVICE_ROLE_KEY: !!Deno.env.get('SUPABASE_SERVICE_ROLE_KEY'),
         GEMINI_API_KEY: !!Deno.env.get('GEMINI_API_KEY'),
-        GEMINI_MODEL: Deno.env.get('GEMINI_MODEL') || 'gemini-3.1-flash-lite'
+        GEMINI_MODEL: 'gemini-3.1-flash-lite'
       }
       console.log(`[${requestId}] Debug mode - env check:`, envInfo)
       return new Response(
