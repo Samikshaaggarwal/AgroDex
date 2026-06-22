@@ -1,7 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { exportVerifyResultToPDF } from "../../utils/pdfExport";
 import type { VerifyBatchResponse } from "../api";
-import { jsPDF } from "jspdf";
 
 describe("pdfExport utility", () => {
   const mockFullData: VerifyBatchResponse = {

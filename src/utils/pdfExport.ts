@@ -37,7 +37,7 @@ export function exportVerifyResultToPDF(
 
   // Helper to draw the standard footer on every page
   const drawPageFooter = () => {
-    const totalPages = (doc as any).internal.getNumberOfPages();
+    const totalPages = doc.getNumberOfPages();
     for (let i = 1; i <= totalPages; i++) {
       doc.setPage(i);
       doc.setFont("helvetica", "normal");
@@ -370,7 +370,7 @@ export function exportVerifyResultToPDF(
       const itemHeight = 18;
       
       // Check if we need to split page for this event
-      const pageAdded = checkPageBounds(itemHeight);
+      checkPageBounds(itemHeight);
       
       doc.setFont("helvetica", "bold");
       doc.setFontSize(9.5);

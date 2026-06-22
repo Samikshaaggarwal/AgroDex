@@ -255,10 +255,11 @@ export default function BatchVerify() {
         title: "PDF Exported",
         description: "Your verification certificate has been downloaded.",
       });
-    } catch (err: any) {
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "Failed to generate PDF.";
       toast({
         title: "Export Error",
-        description: err.message || "Failed to generate PDF.",
+        description: message,
         variant: "destructive",
       });
     }
