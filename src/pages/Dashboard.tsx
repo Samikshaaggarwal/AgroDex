@@ -20,6 +20,7 @@ import {
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Helmet } from "react-helmet-async";
+import { CopyButton } from "@/components/CopyButton";
 import { useQuery } from "@tanstack/react-query";
 import { getDashboardStats, getDashboardHealth } from "@/lib/api";
 import {
@@ -415,11 +416,12 @@ export default function Dashboard() {
                                   href={`https://hashscan.io/testnet/token/${lot.token_id}`}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                                  className="text-blue-600 dark:text-blue-400 hover:underline font-medium inline-flex items-center gap-1"
                                 >
                                   {lot.token_id}/{lot.serial_number}
                                 </a>{" "}
-                                - Score {score}/100
+                                <CopyButton value={lot.token_id} successMessage="Token ID copied!" size="sm" className="h-5 w-5 inline-flex align-middle" />
+                                 - Score {score}/100
                                 {lot.trustExplanation && (
                                   <span className="block text-xs text-gray-500 dark:text-slate-400 mt-1">
                                     {lot.trustExplanation}
@@ -470,11 +472,12 @@ export default function Dashboard() {
                                     href={`https://hashscan.io/testnet/token/${lot.token_id}`}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                                    className="text-blue-600 dark:text-blue-400 hover:underline font-medium inline-flex items-center gap-1"
                                   >
                                     {lot.token_id}/{lot.serial_number}
                                   </a>{" "}
-                                  - Score {score}/100
+                                  <CopyButton value={lot.token_id} successMessage="Token ID copied!" size="sm" className="h-5 w-5 inline-flex align-middle" />
+                                   - Score {score}/100
                                 </span>
                               </li>
                             );
