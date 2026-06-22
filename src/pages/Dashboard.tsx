@@ -425,7 +425,6 @@ export default function Dashboard() {
                       </button>
                     ))}
                   </div>
-                  </div>
 
                   <Select
                     value={`${sortBy}:${sortOrder}`}
