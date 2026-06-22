@@ -17,12 +17,11 @@ import {
   CheckCircle2,
   Loader2,
   ExternalLink,
-  Copy,
-  Check,
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Helmet } from "react-helmet-async";
+import { CopyButton } from "@/components/CopyButton";
 import { useQuery } from "@tanstack/react-query";
 import { getDashboardStats, getDashboardHealth, getAuditLogs, type AuditLogEntry } from "@/lib/api";
 import { Input } from "@/components/ui/input";
@@ -82,13 +81,6 @@ export default function Dashboard() {
   const [search, setSearch] = useState("");
   const [sortBy, setSortBy] = useState("created_at");
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
-  const [copiedId, setCopiedId] = useState<string | null>(null);
-
-  const handleCopy = (id: string) => {
-    navigator.clipboard.writeText(id);
-    setCopiedId(id);
-    setTimeout(() => setCopiedId(null), 2000);
-  };
 
   const statsQuery = useQuery({
     queryKey: ["dashboard-stats"],
@@ -433,6 +425,7 @@ export default function Dashboard() {
                       </button>
                     ))}
                   </div>
+                  </div>
 
                   <Select
                     value={`${sortBy}:${sortOrder}`}
@@ -512,17 +505,12 @@ export default function Dashboard() {
                               </TableCell>
                               <TableCell className="py-2.5 text-right">
                                 <div className="inline-flex items-center gap-1">
-                                  <button
-                                    onClick={() => handleCopy(lot.token_id)}
-                                    className="p-1.5 text-gray-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
-                                    title="Copy Token ID"
-                                  >
-                                    {copiedId === lot.token_id ? (
-                                      <Check className="h-3.5 w-3.5 text-emerald-500" />
-                                    ) : (
-                                      <Copy className="h-3.5 w-3.5" />
-                                    )}
-                                  </button>
+                                  <CopyButton
+                                    value={lot.token_id}
+                                    successMessage="Token ID copied!"
+                                    className="h-8 w-8 text-gray-400 hover:text-emerald-600 dark:hover:text-emerald-400"
+                                    tooltip="Copy Token ID"
+                                  />
                                   <a
                                     href={`https://hashscan.io/testnet/token/${lot.token_id}`}
                                     target="_blank"
