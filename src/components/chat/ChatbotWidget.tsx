@@ -63,14 +63,25 @@ export function ChatbotWidget() {
         throw new Error(errData?.error || `Request failed with status ${response.status}`);
       }
 
-      const data = await response.json();
-      const assistantContent = typeof data === 'string'
-        ? data
-        : data?.choices?.[0]?.message?.content
-          || data?.content
-          || data?.message
-          || data?.response
-          || 'Sorry, I could not generate a response.';
+      const textResponse = await response.text();
+      let assistantContent = '';
+      
+      // Parse Vercel AI SDK stream format (e.g., '0:"Hello"\n')
+      const lines = textResponse.split('\n');
+      for (const line of lines) {
+        if (line.startsWith('0:')) {
+          try {
+            const chunk = JSON.parse(line.substring(2));
+            assistantContent += chunk;
+          } catch (e) {
+            // Ignore malformed chunks
+          }
+        }
+      }
+
+      if (!assistantContent) {
+        assistantContent = textResponse || 'Sorry, I could not generate a response.';
+      }
 
       const assistantMessage: ChatMessage = {
         id: (Date.now() + 1).toString(),
