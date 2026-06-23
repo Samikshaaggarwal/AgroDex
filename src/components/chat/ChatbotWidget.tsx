@@ -73,7 +73,7 @@ export function ChatbotWidget() {
           try {
             const chunk = JSON.parse(line.substring(2));
             assistantContent += chunk;
-          } catch (e) {
+          } catch {
             // Ignore malformed chunks
           }
         }
